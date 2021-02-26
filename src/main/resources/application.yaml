@@ -1,0 +1,46 @@
+#logging:
+#  level:
+#    root: info
+#    br.com.benfatto: debug
+#    org.springframework: debug
+
+server:
+  port: 8060
+  error:
+    include-message: always
+
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+  application:
+    name: administration-service
+  jpa:
+    properties:
+      hibernate:
+        order_updates: true
+        jdbc:
+          batch_size: 1000
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: "jdbc:postgresql://localhost:5433/administration-service?reWriteBatchedInserts=true"
+    username: administration
+    password: swadm
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+ribbon:
+  eureka:
+    enabled: false
+
+eureka:
+  shouldFetchRegistry: false
+  validateInstanceId: false
+  client:
+    register-with-eureka: false
